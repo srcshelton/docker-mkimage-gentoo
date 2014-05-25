@@ -5,7 +5,7 @@ A safe and flexible gentoo stage3 importer for docker, which:
 
  * ... supports 64-bit and x32-bit ABIs;
 
- * ... allows building from all different stage3 variants {nomultilib,hardened,
+ * ... allows building from all different stage3 variants {nomultilib, hardened,
        hardened+nomultilib};
 
  * ... automatically uses latest Gentoo release, and tags the resulting docker
@@ -30,20 +30,30 @@ Usage
 -----
 
 Show what actions would be performed:
-	`docker-mkimage.gentoo --dry-run`
+	```bash
+	docker-mkimage.gentoo --dry-run
+	```
 
 Create an image from the current amd64 stage3 snapshot:
-	`docker-mkimage.gentoo`
+	```bash
+	docker-mkimage.gentoo
+	```
 
 Create an image from the current amd64 stage3 'nomultilib' snapshot:
-	`docker-mkimage.gentoo nomultilib`
+	```bash
+	docker-mkimage.gentoo nomultilib
+	```
 
 Create an image from the current amd64 stage3 'hardened+nomultilib' snapshot:
-	`docker-mkimage.gentoo hardened+nomultilib`
+	```bash
+	docker-mkimage.gentoo hardened+nomultilib
+	```
 
 Create an image from the current amd64 stage3 'nomultilib' snapshot, fetching
-data from [mirror.ovh.net](http://mirror.ovh.net/gentoo-distfiles)
-	`docker-mkimage.gentoo nomultilib http://mirror.ovh.net/gentoo-distfiles`
+data from [mirror.ovh.net](http://mirror.ovh.net/gentoo-distfiles):
+	```bash
+	docker-mkimage.gentoo nomultilib http://mirror.ovh.net/gentoo-distfiles
+	```
 
 Please note that the docker images cannot be used directly, but are intended to
 form the base-image for Gentoo-based
