@@ -1,39 +1,50 @@
 docker-mkimage-gentoo
 =====================
 
-a safe and flexible gentoo stage3 importer for docker.io
+A safe and flexible gentoo stage3 importer for docker, which:
 
- * allows building from all different stage3 flavors {,nomultilib,hardened,hardened+nomultilib}
+ * ... supports 64-bit and x32-bit ABIs;
 
- * automatically uses latest build and tags resulting docker image
+ * ... allows building from all different stage3 variants {nomultilib,hardened,
+       hardened+nomultilib};
 
- * verifies checksum-file signature and makes sure it's actually signed by
+ * ... automatically uses latest Gentoo release, and tags the resulting docker
+       image appropriately;
+
+ * ... verifies archive digests to confirm that they are correctly signed by
+       the Gentoo release key:
 
    > RSA key ID 2D182910
-
    > Key fingerprint = 13EB BDBE DE7A 1277 5DFD  B1BA BB57 2E0E 2D18 2910
-
    > "Gentoo Linux Release Engineering (Automated Weekly Release Key) <releng@gentoo.org>"
 
- * checks both, SHA-512 and Whirlpool digests
+ * ... confirms both SHA-512 and Whirlpool digests.
 
-
+docker-mkimage.gentoo now requires that
+[stdlib.sh](https://github.com/srcshelton/stdlib.sh/) is installed in
+`/usr/local/lib`.  `curl` is used to download data, but `wget` will be used
+automatically if `curl` is not present.  The only other requirements are GnuPG
+`gpg` and OpenSSL.
 
 Usage
 -----
 
-	mkimage-gentoo.sh
-creates images from current amd64 stage3 snapshot
+Show what actions would be performed:
+	`docker-mkimage.gentoo --dry-run`
 
-	mkimage-gentoo.sh nomultilib
-creates images from current amd64 stage3 nomultilib snapshot
+Create an image from the current amd64 stage3 snapshot:
+	`docker-mkimage.gentoo`
 
-	mkimage-gentoo.sh hardened+nomultilib
-creates images from current amd64 stage3 hardened+nomultilib snapshot
+Create an image from the current amd64 stage3 'nomultilib' snapshot:
+	`docker-mkimage.gentoo nomultilib`
 
-	mkimage-gentoo.sh nomultilib http://distfiles.gentoo.org/
-creates images from current amd64 stage3 nomultilib snapshot
-uses http://distfiles.gentoo.org/ as mirror
+Create an image from the current amd64 stage3 'hardened+nomultilib' snapshot:
+	`docker-mkimage.gentoo hardened+nomultilib`
 
-Note that the resulting docker.io images are not ready for use, but rather
-serve as root images for gentoo-based Dockerfiles.
+Create an image from the current amd64 stage3 'nomultilib' snapshot, fetching
+data from [mirror.ovh.net](http://mirror.ovh.net/gentoo-distfiles)
+	`docker-mkimage.gentoo nomultilib http://mirror.ovh.net/gentoo-distfiles`
+
+Please note that the docker images cannot be used directly, but are intended to
+form the base-image for Gentoo-based
+[Dockerfile](http://docs.docker.io/reference/builder/)s
