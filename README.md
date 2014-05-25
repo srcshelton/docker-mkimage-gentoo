@@ -15,7 +15,9 @@ A safe and flexible gentoo stage3 importer for docker, which:
        the Gentoo release key:
 
    > RSA key ID 2D182910
+
    > Key fingerprint = 13EB BDBE DE7A 1277 5DFD  B1BA BB57 2E0E 2D18 2910
+
    > "Gentoo Linux Release Engineering (Automated Weekly Release Key) <releng@gentoo.org>"
 
  * ... confirms both SHA-512 and Whirlpool digests.
@@ -30,30 +32,30 @@ Usage
 -----
 
 Show what actions would be performed:
-	```bash
-	docker-mkimage.gentoo --dry-run
-	```
+```bash
+docker-mkimage.gentoo --dry-run
+```
 
 Create an image from the current amd64 stage3 snapshot:
-	```bash
-	docker-mkimage.gentoo
-	```
+```bash
+docker-mkimage.gentoo
+```
 
 Create an image from the current amd64 stage3 'nomultilib' snapshot:
-	```bash
-	docker-mkimage.gentoo nomultilib
-	```
+```bash
+docker-mkimage.gentoo nomultilib
+```
 
 Create an image from the current amd64 stage3 'hardened+nomultilib' snapshot:
-	```bash
-	docker-mkimage.gentoo hardened+nomultilib
-	```
+```bash
+docker-mkimage.gentoo hardened+nomultilib
+```
 
 Create an image from the current amd64 stage3 'nomultilib' snapshot, fetching
 data from [mirror.ovh.net](http://mirror.ovh.net/gentoo-distfiles):
-	```bash
-	docker-mkimage.gentoo nomultilib http://mirror.ovh.net/gentoo-distfiles
-	```
+```bash
+docker-mkimage.gentoo nomultilib http://mirror.ovh.net/gentoo-distfiles
+```
 
 Please note that the docker images cannot be used directly, but are intended to
 form the base-image for Gentoo-based
